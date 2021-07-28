@@ -1,25 +1,40 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap/dist/js/bootstrap.bundle";
+import { Switch, Route, Redirect } from "react-router-dom";
+import Home from "./Home";
+import About from "./About";
+import Navbar from "./Navbar";
+import AddSearch from "./AddSearch";
+import UserLists from "./UserLists";
+import HospitalLists from "./HospitalLists";
+import BarChart from "./BarChart";
+import "./BarChart.css";
+import Footer from "./Footer";
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <div>
+        <Navbar />
+      </div>
+      <div>
+        <AddSearch />
+      </div>
+      <div className="alignment ">
+        <BarChart />
+      </div>
+      <Switch>
+        {/* <Route exact path="/" component={Home} /> */}
+        <Route exact path="/about" component={About} />
+        <Route exact path="/user" component={UserLists} />
+        <Route exact path="/home" component={Home} />
+        <Route exact path="/hospital/list" component={HospitalLists} />
+        <Redirect to="/" />
+      </Switch>
+      <Footer />
+    </>
   );
-}
+};
 
 export default App;
